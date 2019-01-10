@@ -4,11 +4,12 @@ import getRandom from '../../futils/getrandom'
 const initialState = {
   layout: [
     {
-      type: 0,
-      id: '' + getRandom(1000),
+      type: getRandom(500, 1000),
+      id: '' + getRandom(500, 1000),
       props: {
-        width: 400,
-        height: 400
+        width: 500,
+        height: 500,
+        flex: 'column'
       },
       children: []
     }
@@ -16,12 +17,37 @@ const initialState = {
 }
 
 const createButton = id => ({
-  type: 1,
+  type: getRandom(0, 500),
   id: id,
   props: {
     width: 400,
     height: 400,
-    text: 'Button'
+    text: id
+  },
+  children: []
+})
+
+const createBoxCol = (id, zindex) => ({
+  type: getRandom(500, 1000),
+  id: '' + id,
+  props: {
+    width: 200,
+    height: 200,
+    text: id,
+    flex: 'column',
+    zindex
+  },
+  children: []
+})
+
+const createBoxRow = id => ({
+  type: getRandom(1000, 1500),
+  id: '' + id,
+  props: {
+    width: 200,
+    height: 200,
+    text: id,
+    flex: 'row'
   },
   children: []
 })
@@ -29,13 +55,13 @@ const createButton = id => ({
 const traverseLayout = (layout, id, propsPatch) => layout.map(x => (
   x.id === id
     ? { ...x, props: { ...x.props, ...propsPatch } }
-    : { ...x, children: [...traverseLayout(x.children)] }
+    : { ...x, children: [...traverseLayout(x.children, id, propsPatch)] }
 ))
 
-const addToLayout = (layout, sID, dID) => layout.map(x => (
+const addToLayout = (layout, sID, dID, zindex = 1) => layout.map(x => (
   x.id === dID
-    ? { ...x, children: [...x.children, createButton(sID)] }
-    : { ...x, children: [...addToLayout(x.children)] }
+    ? { ...x, children: [...x.children, sID > 500 ? sID < 1000 ? createBoxCol(sID, zindex) : createBoxRow(sID) : createButton(sID)] }
+    : { ...x, children: [...addToLayout(x.children, sID, dID, zindex + 1)] }
 ))
 
 export default (state = initialState, { type, payload }) => {

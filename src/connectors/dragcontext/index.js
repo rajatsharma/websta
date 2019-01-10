@@ -7,7 +7,7 @@ class DragContext extends React.Component {
   onDragEnd = result => {
     const { source, destination } = result
 
-    if (!destination) {
+    if (!destination || source.droppableId === destination.droppableId) {
       return
     }
 

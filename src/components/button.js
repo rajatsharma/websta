@@ -15,19 +15,11 @@ const Button = styled.div`
   margin: ${({ m }) => m};
 `
 
-Button.defaultProps = {
-  w: '200px',
-  h: '40px',
-  bC: '#000',
-  c: '#fff',
-  bR: '0px',
-  m: '5px'
-}
-
-export default props => (
+const ButtonWrapper = props => (
   <Draggable draggableId={`d-${props.innerKey}`} index={props.innerKey}>
     {(provided, snapshot) => (
       <div
+        style={{ width: props.w, height: props.h }}
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
@@ -40,3 +32,14 @@ export default props => (
     )}
   </Draggable>
 )
+
+ButtonWrapper.defaultProps = {
+  w: '200px',
+  h: '40px',
+  bC: '#000',
+  c: '#fff',
+  bR: '0px',
+  m: '5px'
+}
+
+export default ButtonWrapper
