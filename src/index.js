@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import DragContext from './components/dragContext'
+import DragContext from './connectors/dragcontext'
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -9,11 +9,11 @@ import store from './store'
 import Dashboard from './pages/dashboard'
 
 const Root = (
-  <DragContext>
-    <Provider store={store} >
+  <Provider store={store} >
+    <DragContext>
       <Dashboard />
-    </Provider>
-  </DragContext>
+    </DragContext>
+  </Provider>
 )
 
 ReactDOM.render(

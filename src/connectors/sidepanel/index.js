@@ -3,12 +3,14 @@ import { Flex, Text } from '@elementary/components'
 import { Droppable } from 'react-beautiful-dnd';
 import Button from '../../components/button'
 
+const getRandom = x => Math.floor(Math.random() * x)
+
 const Sidepanel = props => (
   <Flex
     flexDirection='column'
     width='25%' p='5px 10px'
   >
-    <Droppable droppableId="droppable-1" type="PERSON">
+    <Droppable droppableId="droppable-1" isDropDisabled >
       {(provided, snapshot) => (
         <div
           ref={provided.innerRef}
@@ -16,9 +18,7 @@ const Sidepanel = props => (
         >
           <Text fontSize='30px' mb='20px' >Components</Text>
           {
-            [...Array(10).keys()].map(x => (
-              <Button innerKey={x} >Text</Button>
-            ))
+            <Button innerKey={getRandom(1000)} >Button</Button>
           }
           {provided.placeholder}
         </div>
