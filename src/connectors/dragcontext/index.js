@@ -11,8 +11,8 @@ class DragContext extends React.Component {
       return
     }
 
-    if (destination.droppableId === 'canvas') {
-      this.props.addToLayout(source.index)
+    if (destination.droppableId) {
+      this.props.addToLayout(source.index, destination.droppableId)
     }
   };
 
@@ -31,7 +31,7 @@ class DragContext extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addToLayout: index => dispatch(actionCreator('ADD_TO_LAYOUT', index))
+  addToLayout: (sID, dID) => dispatch(actionCreator('ADD_TO_LAYOUT', { sID, dID }))
 })
 
 export default connect(_ => _, mapDispatchToProps)(DragContext)

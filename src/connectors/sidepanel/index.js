@@ -2,8 +2,7 @@ import React from 'react'
 import { Flex, Text } from '@elementary/components'
 import { Droppable } from 'react-beautiful-dnd';
 import Button from '../../components/button'
-
-const getRandom = x => Math.floor(Math.random() * x)
+import getRandom from '../../futils/getrandom'
 
 const Sidepanel = props => (
   <Flex
