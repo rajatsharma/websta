@@ -19,9 +19,6 @@ class DragContext extends React.Component {
   render() {
     return (
       <DragDropContext
-        onBeforeDragStart={this.onBeforeDragStart}
-        onDragStart={this.onDragStart}
-        onDragUpdate={this.onDragUpdate}
         onDragEnd={this.onDragEnd}
       >
         {this.props.children}

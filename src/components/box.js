@@ -4,9 +4,7 @@ import { Droppable } from 'react-beautiful-dnd'
 
 const Box = ({ width, height, onResize, children, id }) => (
   <Resizable width={width} height={height} onResize={onResize} >
-
     <div style={{ width, height, backgroundColor: '#fff' }} >
-
       <Droppable droppableId={id} >
         {(provided, snapshot) => (
           <div
@@ -19,9 +17,7 @@ const Box = ({ width, height, onResize, children, id }) => (
           </div>
         )}
       </Droppable>
-
     </div>
-
   </Resizable>
 )
 
